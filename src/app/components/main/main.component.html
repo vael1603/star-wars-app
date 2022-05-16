@@ -1,0 +1,32 @@
+<context-consumer consume="charactersList isLoad"></context-consumer>
+<div *ngIf="isLoad" class="mt-5">
+    <table class="table table-hover table-bordered bg-light">
+        <thead>
+            <tr class="table-dark text-yellow">
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Height</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody class="">
+            <tr *ngFor="let character of charactersList" class="">
+                <td class="">{{character.name}}</td>
+                <td *ngIf="character.gender != 'n/a'">{{character.gender}}</td>
+                <td *ngIf="character.gender == 'n/a'">other</td>
+                <td class="">{{character.height}}</td>
+                <td class="">
+                    <button  class="border-0 bg-light rounded-circle py-1" [routerLink]="['/character/',character.name]"
+                        routerLinkActive="router-link-active">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                          </svg>
+                    </button></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div *ngIf="charactersList.length == 0" class="text-center bg-light py-3 rounded mt-0">
+        <h5><strong>Any character was found</strong></h5>
+    </div>
+</div>

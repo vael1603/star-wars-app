@@ -1,0 +1,37 @@
+<context-consumer consume="homeworlds films starships filter search"></context-consumer>
+<div class="mt-4 pt-2 rounded bg-light">
+    <div class="form-inline my-2 row justify-content-center" contextConsumer>
+        <mat-form-field class="col-3 text-light">
+            <mat-label>Filter by</mat-label>
+            <mat-select [(ngModel)]="filterType" (ngModelChange)="cleanFilter()">
+                <mat-option value="film">Film</mat-option>
+                <mat-option value="homeworld">Homeworld</mat-option>
+                <mat-option value="starship">Starship</mat-option>
+                <mat-option value="all">All</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-3">
+            <mat-label *ngIf="filterType != 'all'">
+                select the {{filterType}}
+            </mat-label>
+            <mat-select [disabled]="disabled()" [(ngModel)]="filterValue"
+                (ngModelChange)="filter( filterType, filterValue)">
+                <div *ngIf="filterType == 'homeworld'">
+                    <mat-option *ngFor="let planet of homeworlds" value={{planet.url}}>{{planet.name}}</mat-option>
+                </div>
+                <div *ngIf="filterType == 'film'">
+                    <mat-option *ngFor="let film of films" value={{film.url}}>{{film.title}}</mat-option>
+                </div>
+                <div *ngIf="filterType == 'starship'">
+                    <mat-option *ngFor="let starship of starships" value={{starship.url}}>{{starship.name}} -
+                        {{starship.model}}</mat-option>
+                </div>
+            </mat-select>
+        </mat-form-field>
+
+        <input matInput class="form-control w-25 mt-2 mb-4" type="search" [(ngModel)]="searchValue"
+            (ngModelChange)="search($event, filterType, filterValue)" placeholder="Search caracter" aria-label="Search">
+            
+    </div>
+</div>
