@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [16.x]
 
     steps:
       # Este es el primer paso en nuestro flujo de trabajo. Extraeremos el código fuente de nuestro repositorio usando una acción de GitHub llamada checkout. Esta acción extrae su repositorio para $GITHUB_WORKSPACE que su flujo de trabajo pueda acceder al contenido de su repositorio.
@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       
-      # En este paso, ejecutamos npm i para  instalar los paquetes necesarios y luego ejecutamos el comando de compilación Angular para crear el paquete de compilación
+      # En este paso, ejecutamos npm i para instalar los paquetes necesarios y luego ejecutamos el comando de compilación Angular para crear el paquete de compilación
       - name: npm install and npm run build
         run: |
           npm i
