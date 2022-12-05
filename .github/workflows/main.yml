@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       
-      # En este paso, ejecutamos npm i para instalar los paquetes necesarios y luego ejecutamos el comando de compilación Angular para crear el paquete de compilación
+      # En este paso, ejecutamos npm i para  instalar los paquetes necesarios y luego ejecutamos el comando de compilación Angular para crear el paquete de compilación
       - name: npm install and npm run build
         run: |
           npm i
